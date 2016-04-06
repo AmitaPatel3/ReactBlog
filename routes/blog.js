@@ -6,14 +6,14 @@ var Comment = require('../models/comment');
 router.route('/blog')
   .post(function(req,res) {
 
-    var user = req.user || "no user";
+    // var user = req.user || "no user";
 
     var blog = new Blog();
 
     blog.title = req.body.title;
     blog.image = req.body.image;
     blog.content = req.body.content;
-    blog.author = req.user._id || "56d4b62ac452950ac3b15f82";
+    // blog.author = req.user._id || "56d4b62ac452950ac3b15f82";
 
     blog.save(function(err, blog) {
 
@@ -85,7 +85,7 @@ router.route('/blog/:blog_id/comment')
   .post(function (req, res){
     var comment = new Comment();
     comment.body = req.body.body ? req.body.body : comment.body;
-    comment.user = '56d4b1ca72ea3eefc21c8f95';
+    // comment.user = '56d4b1ca72ea3eefc21c8f95';
     comment.blog = req.params.blog_id;
 
     comment.save(function(err, com){

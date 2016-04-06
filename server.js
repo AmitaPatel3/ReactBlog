@@ -56,7 +56,8 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.use('/api/blog', blogRouter)
+
+app.use('/api', blogRouter)
 app.use('/api/tweets/', tweetRoutes); 
 
 var port = process.env.PORT || 3000;

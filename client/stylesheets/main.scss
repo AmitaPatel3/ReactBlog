@@ -1,0 +1,43 @@
+@import "about";
+@import "blog";
+@import "portfolio";
+
+.topnavbar{
+  background-color: #336E7B;
+}
+
+.topnavbartext{
+  color: white !important;
+  align: right !important;
+
+}
+
+.navbarright{
+  float: right;
+}
+
+.amita{
+  color: black;
+  font-size: 30px;
+}
+
+.firstpic{
+  height: 500px;
+ background-image: url(/img/VisiBoard.jpg); 
+  background-repeat: no-repeat;
+ vertical-align: middle;
+ 
+}
+
+
+.secondpic{
+  height: 500px;
+ background-image: url(/img/pattern.jpg); 
+  background-repeat: no-repeat;
+ vertical-align: middle;
+}
+.jumbotron{
+  background-size: cover;
+  background-color: white;
+}
+
