@@ -25,6 +25,8 @@ var CommentFormData = React.createClass({
     }
   },
   loadAllCommentsFromServer: function(){
+    var self = this;
+    var id = this.props.id
 
   },
   componentDidMount: function(){
@@ -40,3 +42,17 @@ var CommentFormData = React.createClass({
 });
 
 module.exports=CommentFormData;
+loadCommentsFromServer: function(){
+    
+    var self = this; 
+    var id = this.props.id;
+    $.ajax({
+      url: this.props.urlGoal + id +'/comment',
+      method: 'GET',
+    }).done(function(comment){
+     
+      self.setState({ 
+        comments: comment.comments
+      })
+    })
+  },a

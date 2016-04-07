@@ -40,13 +40,15 @@ router.route('/blog')
 
 router.route('/blog/:blog_id')
   .get(function(req,res) {
-    Blog.findById(req.params.blog_id, function(err, blog) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(blog);
-      }   
-    })
+    Blog.findById(req.params.blog_id)
+      .populate({ path: 'comments', select: 'body date user' }) 
+      .exec(function(err, blog){
+        if (err) {
+          console.log(err)
+        } else {
+          res.json(blog)
+        }
+      })   
   })
 
   .put(function(req, res) {

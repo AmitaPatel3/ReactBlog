@@ -16,9 +16,11 @@ Index
           CommentCard
 */
 var React = require('react');
+var CommentList = require('./commentList')
 
 function SingleBlogDetails(props){
   console.log(props);
+  console.log(props.oneBlog.comments)
   var author = props.author ? props.author.local.email : null;
   return(
     <div>
@@ -26,6 +28,7 @@ function SingleBlogDetails(props){
       <p>{props.oneBlog.content}</p>
       <p>{props.oneBlog.author}</p>
       <p>{props.oneBlog.date}</p>
+      <CommentList commentsArray={props.oneBlog.comments}/>
     </div>
     )
   };

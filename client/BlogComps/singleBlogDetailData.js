@@ -23,6 +23,7 @@ var SingleBlogDetailData = React.createClass({
   getInitialState: function(){
     return{
       oneBlog: null,
+      comments: [],
     }
   },
   loadOneBlogFromServer: function(){
