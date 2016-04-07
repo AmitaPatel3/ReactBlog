@@ -5,7 +5,7 @@ var Footer = React.createClass({
     return(
         <div>
         <nav className="navbar navbar-fixed-bottom navbar-light bg-faded footer">
-         <a className="navbar-brand" href="#">Fixed bottom</a>
+         <a className="navbar-brand" href="#"></a>
         </nav>
         </div>
       )

@@ -26,7 +26,7 @@ var Navbar = React.createClass({
           </nav>
            <span className="text-muted"></span>
         </div>
-          <nav className="navbar navbar-light bg-faded">
+          <nav className="navbar navbar-light bg-faded navbar-Amita">
             <button className="navbar-toggler navbarright" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
              &#9776;
             </button>
