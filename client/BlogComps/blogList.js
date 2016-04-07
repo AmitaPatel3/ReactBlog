@@ -22,7 +22,7 @@ function BlogList(props){
   var allBlog = props.blogArray.map(item =>{
     return(
       <BlogCard
-        getID={ props.getId }
+        getId={ props.getId }
         id={ item._id }
         key={ item._id }
         image={ item.image }

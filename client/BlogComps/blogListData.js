@@ -35,7 +35,7 @@ componentDidMount: function(){
   this.loadAllBlogsFromServer();
 },
   render: function(){
-    return this.state.allBlog ? <BlogList blogArray={ this.state.allBlog }/> : null;
+    return this.state.allBlog ? <BlogList getId={ this.props.getId } blogArray={ this.state.allBlog }/> : null;
   }
 });
 
