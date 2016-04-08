@@ -24,6 +24,7 @@ function SingleBlogDetails(props){
   var author = props.author ? props.author.local.email : null;
   return(
     <div>
+      <p>{props.oneBlog.title}</p>
       <img src={props.oneBlog.image}/>
       <p>{props.oneBlog.content}</p>
       <p>{props.oneBlog.author}</p>

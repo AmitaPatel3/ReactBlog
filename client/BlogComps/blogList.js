@@ -25,6 +25,7 @@ function BlogList(props){
         getId={ props.getId }
         id={ item._id }
         key={ item._id }
+        title={ item.title }
         image={ item.image }
         content={ item.content }
         author={ item.author }

@@ -34,7 +34,6 @@ var SingleBlogDetailData = React.createClass({
     };
     console.log(ajaxProps);
     $.ajax(ajaxProps).done(function(data){
-      console.log("I am loading one blog from server", data);
       self.setState({oneBlog: data})
     })
   },
@@ -43,7 +42,6 @@ var SingleBlogDetailData = React.createClass({
   },
 
   render: function(){
-    console.log("blog details is rendered")
     return this.state.oneBlog ? <SingleBlogDetails oneBlog={ this.state.oneBlog } /> : null;
   }
 

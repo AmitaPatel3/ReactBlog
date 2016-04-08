@@ -23,10 +23,13 @@ function BlogCard(props){
       <div className="panel panel-default">
         <div className="panel-body"><img className="blog-img" src={props.image}/>
           <div className="panel-body">
+            {props.title}
             {props.content}
             {author}
             {props.date}
             <button onClick={props.getId.bind(null, 'showOne', props.id)} lassName="btn btn-primary">Read More</button>
+            <button onClick={props.getId.bind(null, 'editOne', props.id)} lassName="btn btn-primary">Edit</button>
+
           </div>
         </div>
       </div>

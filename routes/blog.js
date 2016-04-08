@@ -42,6 +42,7 @@ router.route('/blog/:blog_id')
   .get(function(req,res) {
     Blog.findById(req.params.blog_id)
       .populate({ path: 'comments', select: 'body date user' }) 
+      .populate({ path: 'user', select: 'local.username'})
       .exec(function(err, blog){
         if (err) {
           console.log(err)
@@ -84,6 +85,18 @@ router.route('/blog/:blog_id')
   });
 
 router.route('/blog/:blog_id/comment')
+  .get(function(req, res){
+    Blog.findById({ _id: req.params._id })
+      .populate({ path: 'comments'})
+      .populate({ path: 'user', select: 'local.username'})
+      .exec(function(err, comments){
+        if(err){
+          res.status(500).send(err, "Something broke on getting comments");
+        } else {
+          res.json(comments.comments)
+        }
+      })
+  })
   .post(function (req, res){
     var comment = new Comment();
     comment.body = req.body.body ? req.body.body : comment.body;
