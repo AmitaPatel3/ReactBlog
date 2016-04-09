@@ -5,22 +5,20 @@ var Comment = require('../models/comment');
 
 router.route('/blog')
   .post(function(req,res) {
-
-    // var user = req.user || "no user";
-
-    var blog = new Blog();
-
-    blog.title = req.body.title;
-    blog.image = req.body.image;
-    blog.content = req.body.content;
-    // blog.author = req.user._id || "56d4b62ac452950ac3b15f82";
+    var auth = req.user ? req.user._id : "56d4b1ca72ea3eefc21c8f95"
+    var blog = new Blog({
+    
+    title: req.body.title,
+    image: req.body.image,
+    content: req.body.content,
+    author: auth,
+  });
 
     blog.save(function(err, blog) {
-
         if(err){
-          console.log(err)
+           res.status(500).send(err, 'Something failed!');
         } else {
-          res.redirect('/blog')
+          res.redirect('blog')
         }
     })
   })
@@ -37,6 +35,7 @@ router.route('/blog')
       }
     })
   });
+
 
 router.route('/blog/:blog_id')
   .get(function(req,res) {

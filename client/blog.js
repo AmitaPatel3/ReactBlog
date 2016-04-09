@@ -21,6 +21,7 @@ var Toggler = require('./toggler');
 var BlogListData = require('./BlogComps/blogListData');
 var SingleBlogDetailData = require('./BlogComps/singleBlogDetailData');
 var EditBlogData = require('./BlogComps/editBlogData');
+var BlogFormData = require('./BlogComps/blogFormData');
 
 var Blog = React.createClass({
   getInitialState: function(){
@@ -42,6 +43,9 @@ var Blog = React.createClass({
     if(this.state.activeComponent === 'blog'){
       console.log('show comp all blogs')
       return <BlogListData getId={ this.getId }/>
+
+    } else if (this.state.activeComponent === 'form'){
+      return <BlogFormData toggleActiveComp={ this.toggleActiveComp }/>
 
     } else if (this.state.activeComponent === 'oneBlog') {
       console.log('show comp one blog')
