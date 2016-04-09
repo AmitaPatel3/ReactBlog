@@ -32,7 +32,7 @@ var SingleBlogDetailData = React.createClass({
       url: '/api/blog/' + this.props.id,
       method: 'GET',
     };
-    console.log(ajaxProps);
+    // console.log(ajaxProps);
     $.ajax(ajaxProps).done(function(data){
       self.setState({oneBlog: data})
     })
@@ -42,7 +42,7 @@ var SingleBlogDetailData = React.createClass({
   },
 
   render: function(){
-    return this.state.oneBlog ? <SingleBlogDetails oneBlog={ this.state.oneBlog } /> : null;
+    return this.state.oneBlog ? <SingleBlogDetails loadOneBlogFromServer={ this.loadOneBlogFromServer } oneBlog={ this.state.oneBlog } id={ this.props.id } /> : null;
   }
 
 });

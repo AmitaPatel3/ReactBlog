@@ -85,21 +85,26 @@ router.route('/blog/:blog_id')
 
 router.route('/blog/:blog_id/comment')
   .get(function(req, res){
-    Blog.findById({ _id: req.params._id })
-      .populate({ path: 'comments'})
-      .populate({ path: 'user', select: 'local.username'})
+    Blog.findById(req.params.blog_id)
+      .populate({
+       path: 'comments',
+      populate: {
+        path: 'user', 
+        select: 'local.username',
+        }
+      })
       .exec(function(err, comments){
         if(err){
           res.status(500).send(err, "Something broke on getting comments");
         } else {
-          res.json(comments.comments)
+          res.json(comments);
         }
       })
   })
-  .post(function (req, res){
+  .post(function(req, res){
     var comment = new Comment();
     comment.body = req.body.body ? req.body.body : comment.body;
-    // comment.user = '56d4b1ca72ea3eefc21c8f95';
+    comment.user = '56d4b1ca72ea3eefc21c8f95';
     comment.blog = req.params.blog_id;
 
     comment.save(function(err, com){
@@ -118,6 +123,15 @@ router.route('/blog/:blog_id/comment')
         }
       })
     })
+  .delete(function(req, res){
+    Blog.remove({ _id: req.params.goal_id}, function(err, blog){
+      if(err) {
+        console.log(err);
+      } else {
+        res.json({message: 'comment deleted!'});
+      }
+    })
+  });
 
 module.exports = router;
 

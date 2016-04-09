@@ -15,12 +15,14 @@ Index
         CommentList
           CommentCard
 */
-var React = require('react');
-var CommentList = require('./commentList')
+var React = require('react');;
+var CommentList = require('./commentList');
+var CommentFormData = require('./commentFormData');
 
 function SingleBlogDetails(props){
   console.log(props);
   console.log(props.oneBlog.comments)
+  console.log(props.oneBlog._id)
   var author = props.author ? props.author.local.email : null;
   return(
     <div>
@@ -30,6 +32,7 @@ function SingleBlogDetails(props){
       <p>{props.oneBlog.author}</p>
       <p>{props.oneBlog.date}</p>
       <CommentList commentsArray={props.oneBlog.comments}/>
+      <CommentFormData loadOneBlogFromServer={ props.loadOneBlogFromServer } id={ props.oneBlog._id }/>
     </div>
     )
   };
