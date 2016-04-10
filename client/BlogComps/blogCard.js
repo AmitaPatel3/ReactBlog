@@ -20,7 +20,7 @@ var React = require('react');
 function BlogCard(props){
   var author = props.author ? props.author.local.email : null;
   return(
-      <div className="panel panel-default">
+      <div className="panel panel-default blogcard">
         <div className="panel-body"><img className="blog-img" src={props.image}/>
           <div className="panel-body">
             {props.title}

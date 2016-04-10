@@ -22,11 +22,12 @@ var CommentCard = require('./commentCard');
 var CommentList = React.createClass({
   render: function(){
     var comments = this.props.commentsArray;
+    console.log(comments, "i am comment list");
 
     return(
      <div>
         {comments.map(function(comment){
-          return <div><CommentCard body={comment.body} date={comment.date} user={comment.user} /></div>;
+          return <div><CommentCard body={comment.body} date={comment.date.substr(0,10)} user={comment.user} /></div>;
         })}
       </div>
       )

@@ -8,6 +8,8 @@ var Home = require('./home');
 var Portfolio = require('./portfolio');
 var Blog = require('./blog');
 var About = require('./about');
+var UserApp = require('./userApp');
+var UserAuth = require('./userAuth');
 require('./stylesheets/main.scss');
 
 var App = React.createClass({
@@ -21,6 +23,9 @@ var App = React.createClass({
     this.setState({
       activeComponent: componentName 
     })
+  },
+  getActiveComponent: function() {
+    return this.state.activeComponent;
   },
   showWhichComponent: function(){
     switch(this.state.activeComponent) {
@@ -36,6 +41,12 @@ var App = React.createClass({
       case 'about':
         return <About/>
         break;
+      case 'login':
+        return <UserApp login={ true } setActiveComponent={ this.setActiveComponent } />
+        break;
+      case 'signUp':
+        return <UserApp login={ false } setActiveComponent={ this.setActiveComponent } />
+        break;
       default:
         return <Home/>
     };
@@ -44,9 +55,11 @@ var App = React.createClass({
     return(
           <div className=''>
             <Notifier>
-              <Navbar setActiveComponent={ this.setActiveComponent } />
-              { this.showWhichComponent() }
-              <Footer/> 
+              <UserAuth>
+                  <Navbar setActiveComponent={ this.setActiveComponent } getActiveComponent= {this.getActiveComponent} />
+                    { this.showWhichComponent() }
+                  <Footer/> 
+              </UserAuth>
             </Notifier>
           </div> 
       )

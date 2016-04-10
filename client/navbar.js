@@ -2,17 +2,72 @@ var React = require('react');
 
 var links = ['home', 'portfolio', 'blog', 'about'];
 
+var LogIn = React.createClass({
+  render: function(){
+    var self = this;
+    return(
+      <div>
+        <li className="nav-item pull-xs-right">
+          <button onClick= { self.props.setActiveComponent.bind(null, 'signUp' )} className="nav-link btn btn-success-outline" type="submit">Sign Up</button>
+        </li>
+        <li className="nav-item pull-xs-right">
+          <button onClick= { self.props.setActiveComponent.bind(null, 'login')} className="nav-link btn btn-success-outline" type="submit">Login</button>
+        </li>
+      </div>
+
+      )
+  }
+});
+
+var LogOut = React.createClass({
+  render: function(){
+    var self= this;
+  return(
+      <div>
+        <li className="nav-item pull-xs-right">
+          <button onClick= {self.context.logOut} className="nav-link btn btn-success-outline" type="submit">log out</button>
+        </li>
+        <li className="nav-item pull-xs-right">
+          <p className="nav-link">Logged in as: {self.props.userDisplay}</p>
+        </li>
+      </div>
+
+    )
+  }
+});
+
 var Navbar = React.createClass({
   render: function (){
-    console.log("i am navbar")
+    
     var self = this;
-    var link = links.map(function(item){
+    var logButtons;
+    var user = self.context.user;
+    var userDisplay = null;
+    if (user == null) {
+      logButtons = <LogIn setActiveComponent={ self.props.setActiveComponent} />;
+    } else {
+      userDisplay = user.local.username;
+      console.log('this is the loggedi n users username:', userDisplay);
+      logButtons = <LogOut setActiveComponent= { self.props.setActiveComponent } userDisplay={ userDisplay} />;
+    };
+
+    var currentComponent = self.props.getActiveComponent;
+    var linkList = 
+      links.map(function(item){
+      if(currentComponent() === item) {
       return (
       <li className="nav-item li-navbar" key={item} >
-        <a className="nav-link topnavbartext" onClick={self.props.setActiveComponent.bind(null, item)}>{item}</a>
+        <a className="nav-link topnavbartext" onClick={self.props.setActiveComponent.bind(null, item)}>{ item }<span className="sr-only">(current)</span></a>
       </li>
-      )
-    })
+      ) 
+    } else {
+      return(
+        <li className="nav-item" key={item}>
+          <a className="nav-link" onClick={self.props.setActiveComponent.bind(null, item)}>{item}</a>
+          </li>
+        )
+    }
+  });
 
     return(
       <div>
@@ -20,7 +75,9 @@ var Navbar = React.createClass({
           <nav className="navbar navbar-light  bg-faded topnavbar ">
             <div className="nav navbar-nav navbarright">
               <ul className="li-navbar">
-                {link}
+                { linkList }
+                { logButtons }
+
               </ul>
             </div>
           </nav>
@@ -30,7 +87,7 @@ var Navbar = React.createClass({
             <button className="navbar-toggler navbarright" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
              &#9776;
             </button>
-            <a className="nav-item nav-link amita" href="#">Amita Patel Greer</a>
+            <a className="nav-item nav-link amita" href="#"></a>
           </nav>
       </div>
       )

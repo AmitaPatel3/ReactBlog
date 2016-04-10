@@ -21,11 +21,11 @@ var CommentFormData = require('./commentFormData');
 
 function SingleBlogDetails(props){
   console.log(props);
-  console.log(props.oneBlog.comments)
+  console.log(props.oneBlog.comments, "i am comments rendered from single blog details")
   console.log(props.oneBlog._id)
   var author = props.author ? props.author.local.email : null;
   return(
-    <div>
+    <div className="singleblogpost">
       <p>{props.oneBlog.title}</p>
       <img src={props.oneBlog.image}/>
       <p>{props.oneBlog.content}</p>
