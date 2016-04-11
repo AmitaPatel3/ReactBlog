@@ -19,22 +19,24 @@ var React = require('react');;
 var CommentList = require('./commentList');
 var CommentFormData = require('./commentFormData');
 
-function SingleBlogDetails(props){
-  console.log(props);
-  console.log(props.oneBlog.comments, "i am comments rendered from single blog details")
-  console.log(props.oneBlog._id)
-  var author = props.author ? props.author.local.email : null;
+var SingleBlogDetails = React.createClass({
+  render: function(){
+
+  // console.log(this.props.oneBlog, "i am props rendered from single blog details")
+  // console.log(this.props.oneBlog.comments, "i am comments rendered from single blog details")
+  // console.log(this.props.oneBlog._id)
+  var author = this.props.author ? this.props.author.local.email : null;
   return(
     <div className="singleblogpost">
-      <p>{props.oneBlog.title}</p>
-      <img src={props.oneBlog.image}/>
-      <p>{props.oneBlog.content}</p>
-      <p>{props.oneBlog.author}</p>
-      <p>{props.oneBlog.date}</p>
-      <CommentList commentsArray={props.oneBlog.comments}/>
-      <CommentFormData loadOneBlogFromServer={ props.loadOneBlogFromServer } id={ props.oneBlog._id }/>
+      <p>{this.props.oneBlog.title}</p>
+      <img src={this.props.oneBlog.image}/>
+      <p>{this.props.oneBlog.content}</p>
+      <p>{this.props.oneBlog.author}</p>
+      <p>{this.props.oneBlog.date}</p>
+      <CommentList commentsArray={this.props.oneBlog.comments}/>
+      <CommentFormData loadOneBlogFromServer={ this.props.loadOneBlogFromServer } id={ this.props.oneBlog._id } handleCommentFormSubmit={ this.props.handleCommentFormSubmit } />
     </div>
     )
-  };
-
+  }
+});
 module.exports = SingleBlogDetails;

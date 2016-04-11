@@ -23,7 +23,6 @@ var SingleBlogDetailData = React.createClass({
   getInitialState: function(){
     return{
       oneBlog: null,
-      comments: [],
     }
   },
   loadOneBlogFromServer: function(){
@@ -37,6 +36,8 @@ var SingleBlogDetailData = React.createClass({
       self.setState({oneBlog: data})
     })
   },
+
+
   componentDidMount: function(){
     this.loadOneBlogFromServer();
   },

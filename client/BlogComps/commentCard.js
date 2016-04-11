@@ -20,14 +20,13 @@ var React=require('react');
 
 var CommentCard = React.createClass({
   render: function(){
+    console.log("DATA IN CCARD", this.props.body, this.props.date, this.props.username )
     return(
       <div>
-        {this.props.body}
-        {this.props.date}
-        {this.props.user}
-        {this.props.username}
+        <p>{this.props.body}</p>
+        <p>{this.props.date}</p>
+        <p>{this.props.username}</p>
       </div>
-
       )
   }
 });

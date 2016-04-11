@@ -40,8 +40,13 @@ router.route('/blog')
 router.route('/blog/:blog_id')
   .get(function(req,res) {
     Blog.findById(req.params.blog_id)
-      .populate({ path: 'comments', select: 'body date user' }) 
-      .populate({ path: 'user', select: 'local.username'})
+      .populate({
+        path: 'comments',
+        populate: {
+          path: 'user',
+          select: 'local.username'
+        }
+      })
       .exec(function(err, blog){
         if (err) {
           console.log(err)
@@ -106,6 +111,8 @@ router.route('/blog/:blog_id/comment')
     comment.body = req.body.body ? req.body.body : comment.body;
     comment.user = '56d4b1ca72ea3eefc21c8f95';
     comment.blog = req.params.blog_id;
+
+    console.log(comment.body);
 
     comment.save(function(err, com){
       if(err) {

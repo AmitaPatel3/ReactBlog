@@ -22,54 +22,40 @@ var CommentForm = require('./commentForm');
 var CommentFormData = React.createClass({
   getInitialState: function(){
     return{
-      comments: null,
+      body: null,
     }
   },
-  onCommentChange: function(event){
-    this.setState({ comment: event.target.value })
-  },
 
-  loadCommentsFromServer: function(){
-    var self = this;
-    var id = this.props.id;
-    $.ajax({
-      url: '/api/blog/' + this.props.id + '/comment',
-      method: 'GET',
-    }).done(function(comment){
-      console.log('i loadCommentsFromServer', comment);
-      self.setState({
-        comments: comment.comments
-      })
-    })
-  },
-  handleCommentFormSubmit: function(event){
+   handleSubmit: function(event){
     event.preventDefault();
 
-    var comment = this.state.comment;
+    var data = {
+      body: this.state.body
+    };
 
     var self = this;
-    console.log('i submit comment to server', comment);
+    console.log('i submit comment to server', data.body);
 
     $.ajax({
       url: '/api/blog/' + this.props.id + '/comment',
       method: 'POST',
-      data: comment,
+      data: data,
       success: function(data){
         console.log(data, 'this is comment data');
-        this.loadCommentsFromServer();
-        this.props.loadOneBlogFromServer();
+        self.props.loadOneBlogFromServer();
       }.bind(this)
     });
 
-    this.setState({ comments:''});
+    self.setState({ body:''});
   },
-  componentDidMount: function(){
-    this.loadCommentsFromServer();
+  onBodyChange: function(event){
+    this.setState({ body: event.target.value });
   },
+
 
   render: function(){
     return(
-      <CommentForm handleCommentFormSubmit={ this.handleCommentFormSubmit } onCommentChange={ this.onCommentChange }/>
+      <CommentForm handleSubmit={ this.handleSubmit } onBodyChange={ this.onBodyChange } />
       )
   }
 });
