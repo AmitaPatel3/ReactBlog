@@ -20,9 +20,12 @@ var LogIn = React.createClass({
 });
 
 var LogOut = React.createClass({
+  contextTypes: {
+    logOut: React.PropTypes.func.isRequired
+  },
   render: function(){
     var self= this;
-  return(
+    return(
       <div>
         <li className="nav-item pull-xs-right">
           <button onClick= {self.context.logOut} className="nav-link btn btn-success-outline" type="submit">log out</button>
@@ -31,12 +34,14 @@ var LogOut = React.createClass({
           <p className="nav-link">Logged in as: {self.props.userDisplay}</p>
         </li>
       </div>
-
-    )
+      )
   }
 });
 
 var Navbar = React.createClass({
+  contextTypes: {
+    user: React.PropTypes.object
+  },
   render: function (){
     
     var self = this;
@@ -47,7 +52,7 @@ var Navbar = React.createClass({
       logButtons = <LogIn setActiveComponent={ self.props.setActiveComponent} />;
     } else {
       userDisplay = user.local.username;
-      console.log('this is the loggedi n users username:', userDisplay);
+      console.log('this is the logged in users username:', userDisplay);
       logButtons = <LogOut setActiveComponent= { self.props.setActiveComponent } userDisplay={ userDisplay} />;
     };
 
@@ -75,9 +80,7 @@ var Navbar = React.createClass({
           <nav className="navbar navbar-light  bg-faded topnavbar ">
             <div className="nav navbar-nav navbarright">
               <ul className="li-navbar">
-                { linkList }
-                { logButtons }
-
+                { linkList }    { logButtons }
               </ul>
             </div>
           </nav>

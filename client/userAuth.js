@@ -19,7 +19,7 @@ var UserAuth = React.createClass({
   contextTypes:{
       sendNotification: React.PropTypes.func.isRequired
     },
-   getChildContext: function() {
+  getChildContext: function() {
       return {
           user: this.state.user,
           signUp: this.signUp,
@@ -43,9 +43,11 @@ var UserAuth = React.createClass({
       data: userData
     }).done(function (data){
       self.setState({user: data.user});
+      self.context.sendNotification('you signed up');
     }).fail(function(data){
       console.log(data);
-    })
+      self.context.sendNotification('sign up failed: ' + data.responseText);
+    });
   },
 
   logIn: function(email, password){
@@ -61,8 +63,10 @@ var UserAuth = React.createClass({
         data: userData
       }).done(function(data){
         self.setState({user: data.user});
+        self.context.sendNotification('you logged in');
       }).fail(function(data){
         console.log(data);
+        self.context.sendNotification('logged in failed:' + data.responseText);
       });
     },
 
@@ -74,9 +78,10 @@ var UserAuth = React.createClass({
         method: 'GET',
       }).done(function(){
         self.setState({user: null});
-      }).fail(function(data){
-        console.log(data);
-      })
+        self.context.sendNotification('you looged out');
+      }).fail(function(){
+        self.context.sendNotification('logged out failed');
+      });
     },
   render: function(){
     return (

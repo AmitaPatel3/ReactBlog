@@ -22,7 +22,7 @@ var Notifier = React.createClass({
   handleRequestClose: function(){
     this.setState({ open: false })
   },
-  sendNotification: function(){
+  sendNotification: function(message){
     this.setState({ open: true, message: message})
   },
   render: function() {
