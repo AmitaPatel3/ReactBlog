@@ -39,7 +39,7 @@ function BlogForm(props){
       </form>
     </div>
     )
-  }
+  };
 
 
 module.exports = BlogForm;

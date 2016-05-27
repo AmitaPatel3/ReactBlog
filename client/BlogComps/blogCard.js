@@ -26,8 +26,8 @@ function BlogCard(props){
             {props.title}
             {props.content}
             {props.date}
-            <button onClick={props.getId.bind(null, 'showOne', props.id)} lassName="btn btn-primary">Read More</button>
-            <button onClick={props.getId.bind(null, 'editOne', props.id)} lassName="btn btn-primary">Edit</button>
+            <button onClick={props.getId.bind(null, 'showOne', props.id)} className="btn btn-primary">Read More</button>
+            <button onClick={props.getId.bind(null, 'editOne', props.id)} className="btn btn-primary">Edit</button>
 
           </div>
         </div>

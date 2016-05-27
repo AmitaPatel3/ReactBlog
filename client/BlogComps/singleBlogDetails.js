@@ -1,4 +1,4 @@
-/*
+ /*
 Index
   Blog
     BlogListData
@@ -25,6 +25,7 @@ var SingleBlogDetails = React.createClass({
   console.log(this.props.oneBlog, "i am props rendered from single blog details")
   console.log(this.props.oneBlog.comments, "i am comments rendered from single blog details")
   console.log(this.props.oneBlog._id)
+  
   var author = this.props.author ? this.props.author.local.email : null;
 
   return(
@@ -34,7 +35,7 @@ var SingleBlogDetails = React.createClass({
       <p>{this.props.oneBlog.content}</p>
       <p>{this.props.oneBlog.date.substr(0,10)}</p>
       <CommentList commentsArray={this.props.oneBlog.comments}/>
-      <CommentFormData loadOneBlogFromServer={ this.props.loadOneBlogFromServer } id={ this.props.oneBlog._id } handleCommentFormSubmit={ this.props.handleCommentFormSubmit } />
+      <CommentFormData loadOneBlogFromServer={ this.props.loadOneBlogFromServer } id={ this.props.oneBlog._id }  />
     </div>
     )
   }

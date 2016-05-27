@@ -10,7 +10,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 
 var blogRouter = require('./routes/blog');
-var tweetRoutes = require('./routes/tweets'); 
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -58,7 +58,7 @@ app.get('/', function(req, res) {
 
 
 app.use('/api', blogRouter)
-app.use('/api/tweets/', tweetRoutes); 
+
 
 var port = process.env.PORT || 3000;
 

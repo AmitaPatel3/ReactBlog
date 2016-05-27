@@ -90,7 +90,7 @@ var Navbar = React.createClass({
             <button className="navbar-toggler navbarright" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
              &#9776;
             </button>
-            <a className="nav-item nav-link amita" href="#"></a>
+            <a className="nav-item nav-link amita" href=""></a>
           </nav>
       </div>
       )
