@@ -28,6 +28,7 @@ function BlogCard(props){
             {props.date}
             <button onClick={props.getId.bind(null, 'showOne', props.id)} className="btn btn-primary">Read More</button>
             <button onClick={props.getId.bind(null, 'editOne', props.id)} className="btn btn-primary">Edit</button>
+            <button onClick={props.deleteSingleBlog.bind(null, props.id)} className="btn btn-primary">Delete</button>
 
           </div>
         </div>

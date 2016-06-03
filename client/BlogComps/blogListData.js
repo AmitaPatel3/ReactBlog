@@ -31,11 +31,25 @@ loadAllBlogsFromServer: function(){
     method: 'GET'
   }).done(data => this.setState({ allBlog: data}) );
 },
+
+deleteSingleBlog: function(id){
+  var self = this;
+  if (confirm('Wanna delete?') ) {
+    $.ajax({
+      url: '/api/blog/' + id,
+      method: 'DELETE'
+    }).done(function(){
+      self.loadAllBlogsFromServer();
+      self.context.sendNotification("Deleted blog yo!");
+    })
+  }
+},
+
 componentDidMount: function(){
   this.loadAllBlogsFromServer();
 },
   render: function(){
-    return this.state.allBlog ? <BlogList getId={ this.props.getId } blogArray={ this.state.allBlog }/> : null;
+    return this.state.allBlog ? <BlogList getId={ this.props.getId } blogArray={ this.state.allBlog } deleteSingleBlog={ this.deleteSingleBlog } /> : null;
   }
 });
 

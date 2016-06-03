@@ -30,7 +30,8 @@ function BlogList(props){
         content={ item.content }
         author={ item.author }
         date={ item.date }
-        comments={ item.comments } />
+        comments={ item.comments } 
+        deleteSingleBlog={ props.deleteSingleBlog }/>
       );
   });
   
