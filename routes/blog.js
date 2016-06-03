@@ -129,13 +129,23 @@ router.route('/blog/:blog_id/comment')
           })
         }
       })
-    })
+    });
+router.route('/blog/:blog_id/comment/:comment_id')
   .delete(function(req, res){
-    Blog.remove({ _id: req.params.goal_id}, function(err, blog){
+    Comment.remove({_id: req.params.comment_id}, function(err, comment){
       if(err) {
-        console.log(err);
       } else {
-        res.json({message: 'comment deleted!'});
+        res.json({message: 'comment deleted'});
+      }
+    })
+  })
+  .get(function(req, res){
+    Comment.findById(req.params.comment_id)
+    .populate({ path: 'user', select: 'local.username'})
+    .exec(function(err, comment){
+      if(err){
+      } else {
+        res.json(comment)
       }
     })
   });

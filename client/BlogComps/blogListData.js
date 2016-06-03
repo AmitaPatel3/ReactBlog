@@ -25,6 +25,9 @@ getInitialState: function(){
       allBlog: null,
     }
   },
+contextTypes: {
+  sendNotification: React.PropTypes.func.isRequired
+},
 loadAllBlogsFromServer: function(){
   $.ajax({
     url:'/api/blog',

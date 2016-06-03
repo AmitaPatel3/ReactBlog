@@ -25,6 +25,16 @@ var SingleBlogDetailData = React.createClass({
       oneBlog: null,
     }
   },
+   deleteComment: function(id){
+    var self = this;
+    $.ajax({
+      url: '/api/blog/' + this.props.id + '/comment/' + id,
+      method: 'DELETE'
+    }).done(function(){
+      alert('comment deleted');
+      self.loadOneBlogFromServer();
+    })
+  },
   loadOneBlogFromServer: function(){
     var self = this;
     const ajaxProps = {
@@ -43,7 +53,7 @@ var SingleBlogDetailData = React.createClass({
   },
 
   render: function(){
-    return this.state.oneBlog ? <SingleBlogDetails loadOneBlogFromServer={ this.loadOneBlogFromServer } oneBlog={ this.state.oneBlog } id={ this.props.id } /> : null;
+    return this.state.oneBlog ? <SingleBlogDetails loadOneBlogFromServer={ this.loadOneBlogFromServer } oneBlog={ this.state.oneBlog } id={ this.props.id } deleteComment={ this.deleteComment } /> : null;
   }
 
 });
